@@ -8,7 +8,6 @@ import java.util.UUID;
 public class Reading {
 
     @Id
-    private String id;
     private String vin;
     private double latitude;
     private double longitude;
@@ -22,20 +21,8 @@ public class Reading {
     private int engineRpm;
 
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="vin")
     private Tire tires;
-
-    public Reading(){
-        this.id = UUID.randomUUID().toString();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getVin() {
         return vin;
@@ -147,6 +134,7 @@ public class Reading {
                 "engineCoolantLow='" + engineCoolantLow + '\'' +
                 "cruiseControlOn='" + cruiseControlOn + '\'' +
                 "engineRpm='" + engineRpm + '\'' +
+                "tire='" + tires + '\'' +
                 '}';
     }
 }

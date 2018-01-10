@@ -24,12 +24,15 @@ public class ReadingRepoImpl implements ReadingRepo {
 
     public Reading create(Reading reads) {
         entityManager.persist(reads);
+        reads.getTires().setVin(reads.getVin());
         entityManager.persist(reads.getTires());
         return reads;
     }
 
     public Reading update(Reading reads) {
         entityManager.merge(reads);
+        reads.getTires().setVin(reads.getVin());
+        entityManager.merge(reads.getTires());
         return reads;
     }
 

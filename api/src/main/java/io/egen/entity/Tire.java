@@ -1,14 +1,12 @@
 package io.egen.entity;
+import io.egen.controller.ReadingCtrl;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
-@NamedQueries({@NamedQuery(name = "Tires.findAll", query = "SELECT tire FROM Tire tire ORDER BY tire.vin DESC")})
 public class Tire {
 
     @Id
-    private String id;
     private String vin;
     private int frontLeft;
     private int frontRight;
@@ -16,18 +14,10 @@ public class Tire {
     private int rearRight;
 
     public Tire(){
-        this.id = UUID.randomUUID().toString();
+        this.vin = "";
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getVin() {
+    public String getVin(String u) {
         return vin;
     }
 
@@ -70,7 +60,6 @@ public class Tire {
     @Override
     public String toString() {
         return "Tire{" +
-                "vin='" + vin + '\'' +
                 "frontLeft='" + frontLeft + '\'' +
                 "frontRight='" + frontRight + '\'' +
                 "rearLeft='" + rearLeft + '\'' +
