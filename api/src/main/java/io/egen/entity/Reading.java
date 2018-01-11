@@ -1,7 +1,7 @@
 package io.egen.entity;
 
+import javafx.scene.control.Alert;
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @NamedQueries({@NamedQuery(name = "Reading.findAll", query = "SELECT reads FROM Reading reads ORDER BY reads.vin DESC")})

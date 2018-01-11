@@ -1,6 +1,9 @@
 package io.egen.repository;
 
 import io.egen.entity.Reading;
+import io.egen.entity.Vehicle;
+import io.egen.service.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Repository
 public class ReadingRepoImpl implements ReadingRepo {
+
+    @Autowired
+    VehicleService service;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -23,6 +29,21 @@ public class ReadingRepoImpl implements ReadingRepo {
     }
 
     public Reading create(Reading reads) {
+        Vehicle existance = service.findOne(reads.getVin());
+        if(reads.getEngineRpm() > existance.getRedlineRpm()){
+            System.out.println("HIGH: createAlert EngineLow");
+        }
+        if((existance.getMaxFuelVolume()* 0.1) > reads.getFuelVolume()){
+            System.out.println("MEDIUM: createAlert EngineLow");
+        }
+        if(reads.getTires().getFrontLeft() < 32 || reads.getTires().getFrontLeft() > 36 || reads.getTires().getFrontRight() < 32 || reads.getTires().getFrontRight() > 36
+                || reads.getTires().getRearLeft() < 32 || reads.getTires().getRearLeft() > 36 || reads.getTires().getRearRight() < 32 || reads.getTires().getRearRight() > 36){
+            System.out.println("LOW: createAlert TireAlert");
+        }
+        if(reads.isEngineCoolantLow() || reads.isCheckEngineLightOn()){
+            System.out.println("LOW: createAlert EngineLow");
+        }
+
         entityManager.persist(reads);
         reads.getTires().setVin(reads.getVin());
         entityManager.persist(reads.getTires());
