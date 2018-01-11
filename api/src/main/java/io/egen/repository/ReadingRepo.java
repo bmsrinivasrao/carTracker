@@ -1,5 +1,6 @@
 package io.egen.repository;
 
+import io.egen.entity.Alert;
 import io.egen.entity.Reading;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ReadingRepo {
 
     Reading findOne(String vin);
 
-    Reading create(Reading reads);
+    Reading create(Reading reads, Alert alert);
 
     Reading update(Reading reads);
 

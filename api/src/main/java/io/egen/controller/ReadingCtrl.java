@@ -1,5 +1,6 @@
 package io.egen.controller;
 
+import io.egen.entity.Alert;
 import io.egen.entity.Reading;
 import io.egen.service.ReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class ReadingCtrl {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading create(@RequestBody Reading reads) {
-        return service.create(reads);
+    public Reading create(@RequestBody Reading reads, Alert alert) {
+        return service.create(reads, alert);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{vin}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

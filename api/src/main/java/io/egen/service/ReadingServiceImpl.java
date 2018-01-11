@@ -1,5 +1,6 @@
 package io.egen.service;
 
+import io.egen.entity.Alert;
 import io.egen.entity.Reading;
 import io.egen.exception.BadRequestExp;
 import io.egen.exception.ResNotFoundExp;
@@ -31,12 +32,12 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Transactional
-    public Reading create(Reading reads) {
+    public Reading create(Reading reads, Alert alert) {
         Reading existance = repo.findOne(reads.getVin());
         if (existance != null) {
             throw new BadRequestExp("Reading with " + reads.getVin() + "doesn't exist!");
         }
-        return repo.create(reads);
+        return repo.create(reads, alert);
     }
 
     @Transactional

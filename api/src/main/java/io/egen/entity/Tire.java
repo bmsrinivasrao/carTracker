@@ -1,6 +1,4 @@
 package io.egen.entity;
-import io.egen.controller.ReadingCtrl;
-
 import javax.persistence.*;
 
 @Entity

@@ -1,6 +1,5 @@
 package io.egen.entity;
 
-import javafx.scene.control.Alert;
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +22,18 @@ public class Reading {
     @OneToOne
     @JoinColumn(name="vin")
     private Tire tires;
+
+    @OneToOne
+    @JoinColumn(name="vin")
+    private Alert alert;
+
+    public Alert getAlert() {
+        return alert;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
+    }
 
     public String getVin() {
         return vin;
@@ -135,6 +146,7 @@ public class Reading {
                 "cruiseControlOn='" + cruiseControlOn + '\'' +
                 "engineRpm='" + engineRpm + '\'' +
                 "tire='" + tires + '\'' +
+                "alert='" + alert + '\'' +
                 '}';
     }
 }
