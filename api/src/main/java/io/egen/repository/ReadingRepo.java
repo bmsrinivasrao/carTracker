@@ -12,7 +12,7 @@ public interface ReadingRepo {
 
     Reading create(Reading reads, Alert alert);
 
-    Reading update(Reading reads);
+    Reading update(Reading reads, Alert alert);
 
     void delete(Reading reads);
 }

@@ -28,14 +28,14 @@ public class ReadingCtrl {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Reading> create(@RequestBody List<Reading> reads, Alert alert) {
+    public Reading create(@RequestBody Reading reads, Alert alert) {
         return service.create(reads, alert);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/{vin}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading update(@PathVariable("vin") String vin, @RequestBody Reading reads) {
-        return service.update(vin, reads);
+    public Reading update(@PathVariable("vin") String vin, @RequestBody Reading reads, Alert alert) {
+        return service.update(vin, reads, alert);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")

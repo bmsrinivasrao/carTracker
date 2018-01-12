@@ -10,9 +10,9 @@ public interface ReadingService {
 
     Reading findOne(String vin);
 
-    List<Reading> create(List<Reading> reads, Alert alert);
+    Reading create(Reading reads, Alert alert);
 
-    Reading update(String vin, Reading reads);
+    Reading update(String vin, Reading reads, Alert alert);
 
     void delete(String vin);
 }

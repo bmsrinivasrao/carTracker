@@ -32,27 +32,13 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Transactional
-    public List<Reading> create(List<Reading> reads, Alert alert) {
-        for (int i=0; i < reads.size(); i++) {
-            Reading existance = repo.findOne(reads.get(i).getVin());
-            if (existance != null) {
-                update(reads.get(i).getVin(), reads.get(i));
-            }
-            else
-            {
-                repo.create(reads.get(i), alert);
-            }
-        }
-        return reads;
+    public Reading create(Reading reads, Alert alert) {
+        return update(reads.getVin(), reads, alert);
     }
 
     @Transactional
-    public Reading update(String vin, Reading reads) {
-        Reading existance = repo.findOne(vin);
-        if (existance == null) {
-            throw new ResNotFoundExp("Reading with " + reads.getVin() + "already exists!");
-        }
-        return repo.update(reads);
+    public Reading update(String vin, Reading reads, Alert alert) {
+        return repo.update(reads, alert);
     }
 
     @Transactional
