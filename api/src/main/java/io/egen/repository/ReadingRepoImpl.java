@@ -19,7 +19,6 @@ public class ReadingRepoImpl implements ReadingRepo {
 
     @Autowired
     VehicleService service;
-    ReadingService Rservice;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -44,11 +43,18 @@ public class ReadingRepoImpl implements ReadingRepo {
 
     public Reading update(Reading reads, Alert alert) {
         int high = 0, medium = 0, low = 0;
+        Reading ExistReadings = findOne(reads.getVin());
+        if(ExistReadings != null)
+        {
+            high = ExistReadings.getAlert().getHigh();
+            medium = ExistReadings.getAlert().getMedium();
+            low = ExistReadings.getAlert().getLow();
+        }
         // RULES
         Vehicle existance = service.findOne(reads.getVin());
         if(reads.getEngineRpm() > existance.getRedlineRpm()){
             System.out.println("HIGH: createAlert EngineLow");
-            // EMAIL CODE
+            // EMAIL FUNCTION NEEDS TO CALL
             high = high + 1;
         }
         if((existance.getMaxFuelVolume()* 0.1) > reads.getFuelVolume()){
