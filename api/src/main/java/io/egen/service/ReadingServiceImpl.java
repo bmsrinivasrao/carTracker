@@ -32,12 +32,18 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Transactional
-    public Reading create(Reading reads, Alert alert) {
-        Reading existance = repo.findOne(reads.getVin());
-        if (existance != null) {
-            throw new BadRequestExp("Reading with " + reads.getVin() + "doesn't exist!");
+    public List<Reading> create(List<Reading> reads, Alert alert) {
+        for (int i=0; i < reads.size(); i++) {
+            Reading existance = repo.findOne(reads.get(i).getVin());
+            if (existance != null) {
+                update(reads.get(i).getVin(), reads.get(i));
+            }
+            else
+            {
+                repo.create(reads.get(i), alert);
+            }
         }
-        return repo.create(reads, alert);
+        return reads;
     }
 
     @Transactional

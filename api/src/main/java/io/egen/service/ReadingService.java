@@ -10,7 +10,7 @@ public interface ReadingService {
 
     Reading findOne(String vin);
 
-    Reading create(Reading reads, Alert alert);
+    List<Reading> create(List<Reading> reads, Alert alert);
 
     Reading update(String vin, Reading reads);
 

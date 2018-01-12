@@ -1,7 +1,6 @@
 package io.egen.service;
 
 import io.egen.entity.Vehicle;
-import io.egen.exception.BadRequestExp;
 import io.egen.exception.ResNotFoundExp;
 import io.egen.repository.VehicleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +30,20 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Transactional
-    public Vehicle create(Vehicle veh) {
-        Vehicle existance = repo.findOne(veh.getVin());
-        if (existance != null) {
-            throw new BadRequestExp("Vehicle with " + veh.getVin() + "doesn't exist!");
+    public List<Vehicle> create(List<Vehicle> veh) {
+        for (int i=0; i < veh.size(); i++)
+        {
+            Vehicle existance = repo.findOne(veh.get(i).getVin());
+            if (existance != null) {
+                update(veh.get(i).getVin(), veh.get(i));
+                //throw new BadRequestExp("Vehicle with " + veh.getVin() + "doesn't exist!");
+            }
+            else
+            {
+                repo.create(veh.get(i));
+            }
         }
-        return repo.create(veh);
+        return veh;
     }
 
     @Transactional

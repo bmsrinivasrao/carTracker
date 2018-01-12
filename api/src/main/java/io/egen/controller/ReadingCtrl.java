@@ -27,7 +27,7 @@ public class ReadingCtrl {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading create(@RequestBody Reading reads, Alert alert) {
+    public List<Reading> create(@RequestBody List<Reading> reads, Alert alert) {
         return service.create(reads, alert);
     }
 

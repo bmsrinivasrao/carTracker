@@ -10,7 +10,7 @@ public interface VehicleService {
 
     Vehicle findOne(String vin);
 
-    Vehicle create(Vehicle veh);
+    List<Vehicle> create(List<Vehicle> veh);
 
     Vehicle update(String vin, Vehicle veh);
 

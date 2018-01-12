@@ -26,7 +26,7 @@ public class VehicleCtrl {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Vehicle create(@RequestBody Vehicle veh) {
+    public List<Vehicle> create(@RequestBody List<Vehicle> veh) {
         return service.create(veh);
     }
 
