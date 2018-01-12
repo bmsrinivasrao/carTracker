@@ -25,14 +25,16 @@ public class VehicleCtrl {
         return service.findOne(vin);
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vehicle> create(@RequestBody List<Vehicle> veh) {
         return service.create(veh);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{vin}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Vehicle update(@PathVariable("vin") String vin, @RequestBody Vehicle veh) {
-        return service.update(vin, veh);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Vehicle> update(@RequestBody List<Vehicle> veh) {
+        return service.create(veh);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
