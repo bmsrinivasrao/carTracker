@@ -9,6 +9,8 @@ public interface ReadingService {
 
     List<Reading> findAll();
 
+    List<AlertsBulk> findAllAlerts();
+
     Reading findOne(String vin);
 
     Reading create(Reading reads, Alert alert, AlertsBulk alertsBulk);

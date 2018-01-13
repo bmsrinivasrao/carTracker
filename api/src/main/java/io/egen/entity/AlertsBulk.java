@@ -1,11 +1,10 @@
 package io.egen.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
+@NamedQueries({@NamedQuery(name = "Alerts.findAll", query = "SELECT alerts FROM AlertsBulk alerts ORDER BY alerts.vin DESC")})
 public class AlertsBulk {
 
     @Id

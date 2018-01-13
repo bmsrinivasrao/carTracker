@@ -1,13 +1,11 @@
 package io.egen.repository;
 
 import io.egen.entity.*;
-import io.egen.service.ReadingService;
 import io.egen.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -22,6 +20,11 @@ public class ReadingRepoImpl implements ReadingRepo {
 
     public List<Reading> findAll() {
         TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findAll", Reading.class);
+        return query.getResultList();
+    }
+
+    public List<AlertsBulk> findAllAlerts() {
+        TypedQuery<AlertsBulk> query = entityManager.createNamedQuery("Alerts.findAll", AlertsBulk.class);
         return query.getResultList();
     }
 

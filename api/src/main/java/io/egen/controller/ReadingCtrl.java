@@ -27,6 +27,11 @@ public class ReadingCtrl {
         return service.findOne(vin);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/alerts", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<AlertsBulk> findAllAlerts() {
+        return service.findAllAlerts();
+    }
+
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Reading create(@RequestBody Reading reads, Alert alert, AlertsBulk alertsBulk) {

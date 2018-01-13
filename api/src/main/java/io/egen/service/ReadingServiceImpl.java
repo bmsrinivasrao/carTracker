@@ -24,6 +24,11 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Transactional(readOnly = true)
+    public List<AlertsBulk> findAllAlerts() {
+        return repo.findAllAlerts();
+    }
+
+    @Transactional(readOnly = true)
     public Reading findOne(String vin) {
         Reading existance = repo.findOne(vin);
         if (existance == null) {

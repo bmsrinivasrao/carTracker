@@ -11,6 +11,8 @@ public interface ReadingRepo {
 
     Reading findOne(String vin);
 
+    List<AlertsBulk> findAllAlerts();
+
     Reading create(Reading reads, Alert alert, AlertsBulk alertBulk);
 
     Reading update(Reading reads, Alert alert , AlertsBulk alertsBulk);
