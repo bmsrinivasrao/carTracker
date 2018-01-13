@@ -1,6 +1,7 @@
 package io.egen.service;
 
 import io.egen.entity.Alert;
+import io.egen.entity.AlertsBulk;
 import io.egen.entity.Reading;
 import io.egen.exception.BadRequestExp;
 import io.egen.exception.ResNotFoundExp;
@@ -32,13 +33,13 @@ public class ReadingServiceImpl implements ReadingService {
     }
 
     @Transactional
-    public Reading create(Reading reads, Alert alert) {
-        return update(reads.getVin(), reads, alert);
+    public Reading create(Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return update(reads.getVin(), reads, alert, alertsBulk);
     }
 
     @Transactional
-    public Reading update(String vin, Reading reads, Alert alert) {
-        return repo.update(reads, alert);
+    public Reading update(String vin, Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return repo.update(reads, alert, alertsBulk);
     }
 
     @Transactional

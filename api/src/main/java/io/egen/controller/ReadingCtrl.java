@@ -1,6 +1,7 @@
 package io.egen.controller;
 
 import io.egen.entity.Alert;
+import io.egen.entity.AlertsBulk;
 import io.egen.entity.Reading;
 import io.egen.service.ReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,14 @@ public class ReadingCtrl {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading create(@RequestBody Reading reads, Alert alert) {
-        return service.create(reads, alert);
+    public Reading create(@RequestBody Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return service.create(reads, alert, alertsBulk);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/{vin}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading update(@PathVariable("vin") String vin, @RequestBody Reading reads, Alert alert) {
-        return service.update(vin, reads, alert);
+    public Reading update(@PathVariable("vin") String vin, @RequestBody Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return service.update(vin, reads, alert, alertsBulk);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{vin}")
