@@ -1,0 +1,58 @@
+package io.egen.service;
+
+import io.egen.entity.Alert;
+import io.egen.entity.AlertsBulk;
+import io.egen.entity.Reading;
+import io.egen.exception.BadRequestExp;
+import io.egen.exception.ResNotFoundExp;
+import io.egen.repository.ReadingRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class ReadingServiceImpl implements ReadingService {
+
+    @Autowired
+    ReadingRepo repo;
+
+    @Transactional(readOnly = true)
+    public List<Reading> findAll() {
+        return repo.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<AlertsBulk> findAllAlerts() {
+        return repo.findAllAlerts();
+    }
+
+    @Transactional(readOnly = true)
+    public Reading findOne(String vin) {
+        Reading existance = repo.findOne(vin);
+        if (existance == null) {
+            throw new ResNotFoundExp("Reading with " + vin + "doesn't exist!");
+        }
+        return repo.findOne(vin);
+    }
+
+    @Transactional
+    public Reading create(Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return update(reads.getVin(), reads, alert, alertsBulk);
+    }
+
+    @Transactional
+    public Reading update(String vin, Reading reads, Alert alert, AlertsBulk alertsBulk) {
+        return repo.update(reads, alert, alertsBulk);
+    }
+
+    @Transactional
+    public void delete(String vin) {
+        Reading existance = repo.findOne(vin);
+        if (existance == null) {
+            throw new ResNotFoundExp("Reading with " + vin + "doesn't exist!");
+        }
+        repo.delete(existance);
+    }
+}
