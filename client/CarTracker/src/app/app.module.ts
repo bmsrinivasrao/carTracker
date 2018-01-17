@@ -6,8 +6,15 @@ import {VehicleService} from './services/vehicle/vehicle.service';
 import {ReadingsService} from './services/readings/readings.service';
 import { VehiclesListComponent } from './components/vehicles-list/vehicles-list.component';
 import { VehiclesHistoryComponent } from './components/vehicles-history/vehicles-history.component';
+import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 
+
+const appRoutes: Routes = [
+  { path: 'vehicles', component: VehiclesListComponent },
+  { path: 'vehicles/:id', component: VehiclesHistoryComponent },
+  { path: '', redirectTo: '/vehicles', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
@@ -17,7 +24,8 @@ import {HttpModule} from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [VehicleService, ReadingsService],
   bootstrap: [AppComponent]
