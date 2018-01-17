@@ -9,8 +9,15 @@ import 'rxjs/add/operator/catch';
 export class ReadingsService {
   constructor(private http: Http) {
   }
+
   getReadings(vinNum): Observable<any[]> {
     return this.http.get('http://localhost:8080/api/readings/' + vinNum)
+      .map(response => response.json())
+      .catch(error => Observable.throw(error.statusText));
+  }
+
+  getReadingAlerts(): Observable<any[]> {
+    return this.http.get('http://localhost:8080/api/readings/alerts')
       .map(response => response.json())
       .catch(error => Observable.throw(error.statusText));
   }

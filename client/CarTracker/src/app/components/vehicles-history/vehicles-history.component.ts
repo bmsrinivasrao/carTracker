@@ -12,8 +12,6 @@ export class VehiclesHistoryComponent implements OnInit {
   vehicleData;
   readingsData;
   vinNum;
-  mapURL = '';
-
   PORSCHECAYENNE = 'http://www.shopswindows.com/wp-content/uploads/2014/10/2015-porsche-cayenne-turbo-front-view.jpg';
   BMW528 = 'https://pictures.topspeed.com/IMG/crop/201004/2011-bmw-528i-sedan-1_1600x0w.jpg';
   AUDIQ7 = 'https://www.cstatic-images.com/stock/900x600/258995.jpg';

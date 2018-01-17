@@ -9,6 +9,8 @@ import {VehicleService} from '../../services/vehicle/vehicle.service';
 })
 export class VehiclesListComponent implements OnInit {
   vehiclesData = [];
+  readingsData = [];
+  currentTime;
   PORSCHECAYENNE = 'http://www.shopswindows.com/wp-content/uploads/2014/10/2015-porsche-cayenne-turbo-front-view.jpg';
   BMW528 = 'https://pictures.topspeed.com/IMG/crop/201004/2011-bmw-528i-sedan-1_1600x0w.jpg';
   AUDIQ7 = 'https://www.cstatic-images.com/stock/900x600/258995.jpg';
@@ -53,7 +55,7 @@ export class VehiclesListComponent implements OnInit {
     }
   }
 
-  constructor(private vehicleService: VehicleService) {
+  constructor(private vehicleService: VehicleService, private readingsService: ReadingsService) {
   }
 
   ngOnInit() {
@@ -62,5 +64,20 @@ export class VehiclesListComponent implements OnInit {
         vehicles => this.vehiclesData = vehicles,
         error => console.log(error)
       );
+  }
+
+  getAlerts(vinNum) {
+    this.readingsService.getReadings(vinNum)
+      .subscribe(
+        alerts => this.readingsData = alerts,
+        error => console.log(error)
+      );
+  }
+
+  getLast2hrsTime() {
+    let dateObj;
+    dateObj = new Date();
+    dateObj.setHours(dateObj.getHours() - 2);
+    return this.currentTime = dateObj.toLocaleString();
   }
 }
