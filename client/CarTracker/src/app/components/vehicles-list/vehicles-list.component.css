@@ -3,3 +3,8 @@
   width: 50px;
   border-radius: 50%;
 }
+
+.alertClass{
+  color: darkred;
+  font-weight: bold;
+}

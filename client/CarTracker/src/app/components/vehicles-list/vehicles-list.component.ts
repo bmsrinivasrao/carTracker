@@ -64,14 +64,24 @@ export class VehiclesListComponent implements OnInit {
         vehicles => this.vehiclesData = vehicles,
         error => console.log(error)
       );
-  }
-
-  getAlerts(vinNum) {
-    this.readingsService.getReadings(vinNum)
+    this.readingsService.getReadingAlerts()
       .subscribe(
         alerts => this.readingsData = alerts,
         error => console.log(error)
       );
+  }
+
+  getAlerts(vinNum, last2Hrs, readTime) {
+    let high = 0;
+    for (let i = 0; i < this.readingsData.length; i++) {
+      if (this.readingsData[i].vin === vinNum) {
+        this.getTimeFormat(this.readingsData[i].timeStamp);
+        if (this.readingsData[i].alertType === 'High' && last2Hrs === readTime ) {
+          high++;
+        }
+      }
+    }
+    return high;
   }
 
   getLast2hrsTime() {
@@ -79,5 +89,9 @@ export class VehiclesListComponent implements OnInit {
     dateObj = new Date();
     dateObj.setHours(dateObj.getHours() - 2);
     return this.currentTime = dateObj.toLocaleString();
+  }
+
+  getTimeFormat(time) {
+    return this.currentTime = time;
   }
 }
