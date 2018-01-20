@@ -1,0 +1,15 @@
+.padding{
+  padding: 10px 10px;
+  margin: 0px -15px 5px -15px;
+}
+footer{
+  text-align: center;
+  background: #00695C;
+  padding: 12px;
+  margin: 20px -15px 0px -15px;
+  color: #fff;
+}
+
+.navbar-brand{
+  margin-right: 50px;
+}

@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark padding">
+    <a class="navbar-brand" [routerLink]="['/vehicles']">&#xf1b9; Car Tracker</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="btn btn-outline-secondary nav-link" [routerLink]="['/vehicles']">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  <footer>&copy; 2018 Egen Solutions - Car Tracker</footer>
+</div>
+

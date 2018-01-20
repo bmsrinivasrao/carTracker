@@ -1,0 +1,15 @@
+.carImg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.alertClass{
+  color: darkred;
+  font-weight: bold;
+}
+
+.HoverAlert:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}

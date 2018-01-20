@@ -1,0 +1,191 @@
+<div class="row">
+  <div class="col-5">
+    <div class="card">
+      <img class="card-img-top" src="{{carURL()}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{vehicleData.make}} {{vehicleData.model}} {{vehicleData.year}}</h5>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Vin:</strong> {{vehicleData.vin}}</li>
+        <li class="list-group-item"><strong>Make:</strong> {{vehicleData.make}}</li>
+        <li class="list-group-item"><strong>Model:</strong> {{vehicleData.model}}</li>
+        <li class="list-group-item"><strong>Year:</strong> {{vehicleData.year}}</li>
+        <li class="list-group-item"><strong>Redline Rpm:</strong> {{vehicleData.redlineRpm}}</li>
+        <li class="list-group-item"><strong>Max Fuel Volume:</strong> {{vehicleData.maxFuelVolume}}</li>
+        <li class="list-group-item"><strong>Last Service Date:</strong> {{vehicleData.lastServiceDate | date:"MMM d,
+          yyyy h:mm:ss a"}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-7">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+           aria-controls="nav-home" aria-selected="true">History</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+           aria-controls="nav-profile" aria-selected="false">Track by Geolocation</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+        <div class="card">
+          <h5 class="card-header">Filter by date and time</h5>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Pick start date and time</span>
+            </div>
+            <input type="text" class="form-control">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Pick end date and time</span>
+            </div>
+            <input type="text" class="form-control">
+          </div>
+          <h5 class="card-header">Number of total alerts</h5>
+          <div class="card-body row">
+            <div class="col-4">
+              <div class="card text-white bg-danger mb-3">
+                <div class="card-header">High Alerts</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.alert.high}}</h5>
+                  <p class="card-text">Low Engine.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card text-white bg-info mb-3">
+                <div class="card-header">Medium Alerts</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.alert.medium}}</h5>
+                  <p class="card-text">Low Fuel.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Low Alerts</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.alert.low}}</h5>
+                  <p class="card-text">Engine Coolant Low.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5 class="card-header">Current Tires Pressure</h5>
+          <div class="card-body row">
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Front Left</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.tires.frontLeft}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Front Right</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.tires.frontRight}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Rear Left</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.tires.rearLeft}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Rear Right</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.tires.rearRight}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h5 class="card-header">Other Readings</h5>
+          <div class="card-body row">
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Fuel Volume</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.fuelVolume}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Speed</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.speed}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Engine Hp</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.engineHp}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">CheckEngine On</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.checkEngineLightOn}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">Coolant Low</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.engineCoolantLow}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">CruiseControl On</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.cruiseControlOn}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card bg-light mb-3">
+                <div class="card-header">EngineRpm</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{readingsData.engineRpm}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <h5 class="card-header">Vehicle geolocation within last 30minutes.</h5>
+        <iframe
+          width="100%"
+          height="500"
+          frameborder="0" style="border:0"
+          src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q={{readingsData.latitude}},{{readingsData.longitude}} (custom heading)&amp;output=embed"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

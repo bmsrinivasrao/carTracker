@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-12">
+    <table class="table">
+      <thead class="table-active">
+      <tr>
+        <th></th>
+        <th scope="col">Vin</th>
+        <th scope="col">Make</th>
+        <th scope="col">Model</th>
+        <th scope="col">Year</th>
+        <th scope="col">Redline Rpm</th>
+        <th scope="col">Max Fuel Volume</th>
+        <th scope="col">Last Service Date</th>
+        <th class="alertClass HoverAlert" scope="col" sortable-column="alerts" (click)="sort()">Last 2hrs High Alerts</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let veh of vehiclesData | orderBy: vehiclesData.lastServiceDate ">
+        <th><img class="carImg" src="{{carURL(veh.vin)}}" alt="Car Image"></th>
+        <th scope="row">{{veh.vin}}</th>
+        <td>{{veh.make}}</td>
+        <td>{{veh.model}}</td>
+        <td>{{veh.year}}</td>
+        <td>{{veh.redlineRpm}}</td>
+        <td>{{veh.maxFuelVolume}}</td>
+        <td>{{veh.lastServiceDate | date:"MMM d, y, h:mm:ss a" }}</td>
+        <td class="alertClass">{{getAlerts(veh.vin, getLast2hrsTime()|date:"MMM d, y, h", currentTime | date:"MMM d, y, h")}}</td>
+        <td>
+          <a [routerLink]="['/vehicles', veh.vin]" class="btn btn-success btn-sm">Details</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
