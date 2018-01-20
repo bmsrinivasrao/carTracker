@@ -8,7 +8,18 @@ import {VehicleService} from '../../services/vehicle/vehicle.service';
   styleUrls: ['./vehicles-list.component.css']
 })
 export class VehiclesListComponent implements OnInit {
-  vehiclesData = [];
+  vehiclesData = [
+    {
+      'vin': '',
+      'make': '',
+      'model': '',
+      'year': null,
+      'redlineRpm': null,
+      'maxFuelVolume': null,
+      'lastServiceDate': '',
+      'highAlert': null
+    }
+  ];
   readingsData = [];
   currentTime;
   PORSCHECAYENNE = 'http://www.shopswindows.com/wp-content/uploads/2014/10/2015-porsche-cayenne-turbo-front-view.jpg';
@@ -94,4 +105,9 @@ export class VehiclesListComponent implements OnInit {
   getTimeFormat(time) {
     return this.currentTime = time;
   }
+
+  sort() {
+    this.vehiclesData.sort().reverse();
+  }
+
 }

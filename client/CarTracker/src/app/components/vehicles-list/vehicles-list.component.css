@@ -8,3 +8,8 @@
   color: darkred;
   font-weight: bold;
 }
+
+.HoverAlert:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}

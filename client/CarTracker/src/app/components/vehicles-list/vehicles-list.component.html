@@ -11,12 +11,12 @@
         <th scope="col">Redline Rpm</th>
         <th scope="col">Max Fuel Volume</th>
         <th scope="col">Last Service Date</th>
-        <th class="alertClass" scope="col">Last 2hrs High Alerts</th>
+        <th class="alertClass HoverAlert" scope="col" sortable-column="alerts" (click)="sort()">Last 2hrs High Alerts</th>
         <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let veh of vehiclesData">
+      <tr *ngFor="let veh of vehiclesData | orderBy: vehiclesData.lastServiceDate ">
         <th><img class="carImg" src="{{carURL(veh.vin)}}" alt="Car Image"></th>
         <th scope="row">{{veh.vin}}</th>
         <td>{{veh.make}}</td>

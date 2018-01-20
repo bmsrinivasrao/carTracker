@@ -8,6 +8,7 @@ import { VehiclesListComponent } from './components/vehicles-list/vehicles-list.
 import { VehiclesHistoryComponent } from './components/vehicles-history/vehicles-history.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 const appRoutes: Routes = [
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    OrderModule
   ],
   providers: [VehicleService, ReadingsService],
   bootstrap: [AppComponent]
